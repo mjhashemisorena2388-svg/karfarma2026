@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.8">
+<title>پنل امیر رضا معمر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0c08;
+    --bg-panel: #17130c;
+    --bg-panel-hi: #1e1810;
+    --line: #332a17;
+    --line-soft: #241d10;
+    --yellow: #f5c542;
+    --yellow-soft: #8a6f26;
+    --yellow-glow: rgba(245, 197, 66, 0.18);
+    --text: #f5efdc;
+    --text-dim: #a99f84;
+    --text-faint: #6d6350;
+    --radius: 18px;
+  }
+  :root[data-theme="light"]{
+    --bg: #fbf6ea;
+    --bg-panel: #ffffff;
+    --bg-panel-hi: #fffdf5;
+    --line: #e6d9ac;
+    --line-soft: #efe6c9;
+    --yellow: #b8860b;
+    --yellow-soft: #d4a72c;
+    --yellow-glow: rgba(184, 134, 11, 0.10);
+    --text: #241d0f;
+    --text-dim: #6b5f42;
+    --text-faint: #9c8f6d;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body{
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, var(--yellow-glow), transparent 45%),
+      radial-gradient(circle at 100% 100%, var(--yellow-glow), transparent 40%);
+    color: var(--text);
+    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+    min-height: 100vh;
+    padding: 60px 20px 80px;
+    line-height: 1.7;
+  }
+
+  .wrap{
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* Hero */
+  .hero{
+    margin-bottom: 44px;
+    animation: rise 0.7s ease-out both;
+  }
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(10px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .hero-label{
+    font-size: 14px;
+    color: var(--text-faint);
+    margin: 0 0 10px;
+  }
+  .hero-name{
+    font-size: 44px;
+    font-weight: 900;
+    margin: 0 0 22px;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  .status-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .status-pulse{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 0 var(--yellow-glow);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%   { box-shadow: 0 0 0 0 rgba(245,197,66,0.55); }
+    70%  { box-shadow: 0 0 0 14px rgba(245,197,66,0); }
+    100% { box-shadow: 0 0 0 0 rgba(245,197,66,0); }
+  }
+  .status-text{
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--yellow);
+  }
+
+  /* Progress bar */
+  .progress-track{
+    margin-top: 26px;
+    height: 8px;
+    border-radius: 99px;
+    background: var(--line-soft);
+    overflow: hidden;
+    position: relative;
+  }
+  .progress-fill{
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--yellow-soft), var(--yellow));
+  }
+  .progress-caption{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-faint);
+  }
+  .progress-caption strong{ color: var(--text-dim); font-weight: 600; }
+
+  /* Stages */
+  .section-title{
+    font-size: 13.5px;
+    color: var(--text-faint);
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  .stage-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .stage{
+    background: var(--bg-panel);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .stage:hover{
+    border-color: var(--line);
+    background: var(--bg-panel-hi);
+  }
+
+  .stage-num{
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--line-soft);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .stage-body{
+    flex: 1;
+    min-width: 0;
+  }
+  .stage-name{
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 3px;
+  }
+  .stage-desc{
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  .stage-status{
+    font-size: 12px;
+    color: var(--yellow);
+    font-weight: 700;
+    flex-shrink: 0;
+    background: var(--yellow-glow);
+    border: 1px solid rgba(245,197,66,0.3);
+    padding: 6px 13px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  /* Payment note */
+  .note{
+    background: linear-gradient(155deg, var(--bg-panel-hi), var(--bg-panel));
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .note::before{
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--yellow);
+  }
+  .note strong{
+    color: var(--text);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .note p{
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .footer{
+    margin-top: 36px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 480px){
+    .hero-name{ font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <p class="hero-label">پنل پروژه مشتری</p>
+      <h1 class="hero-name">امیر رضا معمر</h1>
+
+      <div class="status-row">
+        <span class="status-pulse"></span>
+        <span class="status-text">در انتظار پرداخت</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-caption">
+        <span>پیشرفت پروژه</span>
+        <strong>۰ از ۳ مرحله</strong>
+      </div>
+    </div>
+
+    <p class="section-title">مراحل ساخت سایت</p>
+    <div class="stage-list">
+      <div class="stage">
+        <div class="stage-num">۱</div>
+        <div class="stage-body">
+          <p class="stage-name">طراحی سایت</p>
+          <p class="stage-desc">قالب و رابط کاربری هنوز نهایی نشده است.</p>
+        </div>
+        <span class="stage-status">ناقص</span>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">۲</div>
+        <div class="stage-body">
+          <p class="stage-name">احراز هویت</p>
+          <p class="stage-desc">فرآیند ورود و تایید کاربران تکمیل نشده است.</p>
+        </div>
+        <span class="stage-status">ناقص</span>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num">۳</div>
+        <div class="stage-body">
+          <p class="stage-name">اطلاعات سایت</p>
+          <p class="stage-desc">محتوا و اطلاعات پایه سایت هنوز وارد نشده است.</p>
+        </div>
+        <span class="stage-status">ناقص</span>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>ادامه کار در انتظار پرداخت است</strong>
+      <p>تا زمان تسویه حساب، مراحل بالا تکمیل نخواهند شد.</p>
+    </div>
+
+    <p class="footer">آخرین به‌روزرسانی: امروز</p>
+  </div>
+</body>
+</html>
